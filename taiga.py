@@ -45,10 +45,10 @@ def check_loged_in(driver):
 
 def upload_file(driver):
     driver.get('http://192.168.120.100/project/walter-general-oil-2019/wiki/demo-selenium')
-    tg_elms = driver.find_element_by_tag_name('tg-svg')
-    for elm in tg_elms:
-        print(elm.get_attribute('svg-icon'))
-
+    input_file_el = WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input#add-attach')))
+    input_file_el.send_keys('/home/mars/Pictures/icon/filezilla.png')
+    save_icon_el = WebDriverWait(driver, 3600).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'tg-svg[svg-icon="icon-save"]')))
+    save_icon_el.click()
 
 if __name__ == '__main__':
     driver = get_driver()
